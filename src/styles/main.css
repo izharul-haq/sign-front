@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .button {
+    @apply flex w-full font-semibold items-center justify-center rounded-lg p-2 shadow-none hover:shadow-lg focus:ring focus:outline-none transition duration-300 text-sm min-w-[8rem] text-[1rem];
+  }
+
+  .input-number {
+    @apply border border-botticelli-400 w-full bg-botticelli-400 rounded-md shadow-sm p-2 focus:outline-none focus:ring-0 focus:shadow-md transition duration-100;
+  }
+
+  .input-text {
+    @apply border border-botticelli-400 rounded-md shadow-sm w-full p-2 focus:outline-none focus:shadow-md transition duration-100 placeholder-gray-500;
+  }
+
+  .table-header {
+    @apply p-2 bg-botticelli-400 text-sm text-center font-semibold text-botticelli-600 uppercase tracking-wider;
+  }
+
+  .table-cell {
+    @apply p-2 text-center;
+  }
+
+  .table-body {
+    @apply bg-white divide-y divide-botticelli-400;
+  }
+
+  .page-container {
+    @apply container mx-auto p-4 mb-4;
+  }
+
+  .page-title {
+    @apply font-bold text-2xl;
+  }
+
+  .page-heading-1 {
+    @apply font-semibold text-xl;
+  }
+}
+
+@layer components {
+  .button-primary {
+    @apply bg-victoria-500 text-lightning-yellow-500 focus:bg-victoria-600;
+  }
+  .button-secondary {
+    @apply bg-lightning-yellow-500 text-victoria-500 focus:bg-botticelli-500 focus:ring-botticelli-200;
+  }
+}
