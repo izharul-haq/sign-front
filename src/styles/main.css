@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,15 +10,15 @@
   }
 
   .input-number {
-    @apply border border-botticelli-400 w-full bg-botticelli-400 rounded-md shadow-sm p-2 focus:outline-none focus:ring-0 focus:shadow-md transition duration-100;
+    @apply border border-shocking-400 w-full rounded-md shadow-sm p-2 focus:outline-none focus:ring-0 focus:shadow-md transition duration-100;
   }
 
   .input-text {
-    @apply border border-botticelli-400 rounded-md shadow-sm w-full p-2 focus:outline-none focus:shadow-md transition duration-100 placeholder-gray-500;
+    @apply border border-shocking-400 rounded-md shadow-sm w-full p-2 focus:outline-none focus:shadow-md transition duration-100;
   }
 
   .table-header {
-    @apply p-2 bg-botticelli-400 text-sm text-center font-semibold text-botticelli-600 uppercase tracking-wider;
+    @apply p-2 bg-shocking-400 text-sm text-center font-semibold text-shocking-600 uppercase tracking-wider;
   }
 
   .table-cell {
@@ -24,7 +26,7 @@
   }
 
   .table-body {
-    @apply bg-white divide-y divide-botticelli-400;
+    @apply bg-white divide-y divide-shocking-400;
   }
 
   .page-container {
@@ -42,9 +44,9 @@
 
 @layer components {
   .button-primary {
-    @apply bg-victoria-500 text-lightning-yellow-500 focus:bg-victoria-600;
+    @apply bg-shocking-700 text-jordy-blue-200 focus:bg-shocking-500 focus:ring-0;
   }
   .button-secondary {
-    @apply bg-lightning-yellow-500 text-victoria-500 focus:bg-botticelli-500 focus:ring-botticelli-200;
+    @apply bg-jordy-blue-700 text-shocking-200 focus:bg-jordy-blue-500 focus:ring-0;
   }
 }
