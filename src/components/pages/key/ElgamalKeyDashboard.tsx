@@ -29,7 +29,7 @@ const ElgamalKeyDashboard: React.FC = () => {
         <div className="page-title mb-1">
           Key Generator
         </div>
-        <div className="italic">For Elgamal algorithm</div>
+        <div className="italic">For DSS algorithm</div>
       </div>
       <div className="mb-2 p-2 rounded-md bg-jordy-blue-600 text-shocking-200">
         <span className="font-semibold">NOTE:</span> To generate big prime number(s) click{' '}

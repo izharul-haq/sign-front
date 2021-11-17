@@ -4,7 +4,7 @@ import { Menu } from '@headlessui/react';
 
 const keyVariants = [
   { name: 'rsa', title: 'RSA' },
-  { name: 'elg', title: 'Elgamal' },
+  { name: 'elg', title: 'DSS' },
 ];
 
 const Navbar: React.FC = () => {
@@ -24,10 +24,10 @@ const Navbar: React.FC = () => {
               <Menu.Button as="div" className="flex cursor-pointer hover:text-shocking-300">
                 KEY
               </Menu.Button>
-                <Menu.Items as="div" className="flex flex-col mt-1 space-y-1 w-32 absolute p-2 bg-white outline-none border border-gray-300 rounded shadow right-24">
+                <Menu.Items as="div" className="flex flex-col mt-1 space-y-1 w-20 absolute p-2 bg-white outline-none border border-gray-300 rounded shadow right-22">
                 {keyVariants.map(({ name, title}) => (
                   <Link key={`${name}`} href={`/key/${name}`} passHref>
-                    <Menu.Item as="a" className="flex items-center py-1 cursor-pointer font-semibold px-2.5 text-jordy-blue-600 duration-150 hover:bg-jordy-blue-300 hover:text-shocking-600 rounded-md">
+                    <Menu.Item as="a" className="flex items-center p-1 cursor-pointer font-semibold text-jordy-blue-600 duration-150 hover:bg-jordy-blue-300 hover:text-shocking-600 rounded-md">
                       <div className="w-full text-center">{title}</div>
                     </Menu.Item>
                   </Link>

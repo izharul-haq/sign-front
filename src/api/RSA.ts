@@ -22,3 +22,17 @@ export const getRSASign = async (message: File, key: string): Promise<string> =>
 
   return data;
 };
+
+export const verifyRSASign = async (message: File, key: string, sign: string): Promise<boolean> => {
+  const formData = new FormData();
+  formData.append('message', message);
+  formData.append('key', key);
+  formData.append('sign', sign);
+
+  const { data } = await BaseInstance.post<boolean>(
+    '/sign/verify?algo=rsa',
+    formData
+  );
+
+  return data;
+}
