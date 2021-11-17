@@ -1,10 +1,10 @@
-export interface ElgamalKeyInput {
+export interface DSSKeyInput {
   p: string;
   q: string;
   x: string;
 }
 
-export interface ElgamalKeyOutput {
+export interface DSSKeyOutput {
   pub_key: {
     p: string;
     q: string;

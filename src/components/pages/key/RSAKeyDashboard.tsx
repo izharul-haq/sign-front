@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { getRSAKey } from '~/api/RSA';
-import { RSAKeyInput } from '~/models/RSA';
+import { getKey } from '~/api/sign';
+import { RSAKeyInput, RSAKeyOutput } from '~/models/RSA';
 import { saveAsJSONFile } from '~/utils/key';
 
 const RSAKeyDashboard: React.FC = () => {
@@ -13,7 +13,7 @@ const RSAKeyDashboard: React.FC = () => {
   
   const onSubmit = async (data: RSAKeyInput) => {
     try {
-      const { pub_key, pri_key } = await getRSAKey(data);
+      const { pub_key, pri_key } = (await getKey('rsa', data)) as RSAKeyOutput;
 
       setE(pub_key.e); setD(pri_key.d); setN(pub_key.n);
     } catch (err) {

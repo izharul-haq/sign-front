@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { getElgamalKey } from '~/api/Elgamal';
-import { ElgamalKeyInput } from '~/models/Elgamal';
+import { getKey } from '~/api/sign';
+import { DSSKeyInput, DSSKeyOutput } from '~/models/DSS';
 import { saveAsJSONFile } from '~/utils/key';
 
-const ElgamalKeyDashboard: React.FC = () => {
+const DSSKeyDashboard: React.FC = () => {
   const [y, setY] = useState<string | undefined>();
   const [g, setG] = useState<string | undefined>();
   const [x, setX] = useState<string | undefined>();
@@ -13,9 +13,9 @@ const ElgamalKeyDashboard: React.FC = () => {
 
   const { register, handleSubmit } = useForm();
   
-  const onSubmit = async (data: ElgamalKeyInput) => {
+  const onSubmit = async (data: DSSKeyInput) => {
     try {
-      const { pub_key, pri_key } = await getElgamalKey(data);
+      const { pub_key, pri_key } = (await getKey('dss', data)) as DSSKeyOutput;
       setY(pub_key.y); setG(pub_key.g); setX(pri_key.x);
       setP(pub_key.p); setQ(pub_key.q);
     } catch (err) {
@@ -171,4 +171,4 @@ const ElgamalKeyDashboard: React.FC = () => {
   );
 };
 
-export default ElgamalKeyDashboard;
+export default DSSKeyDashboard;

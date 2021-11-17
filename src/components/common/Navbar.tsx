@@ -4,7 +4,7 @@ import { Menu } from '@headlessui/react';
 
 const keyVariants = [
   { name: 'rsa', title: 'RSA' },
-  { name: 'elg', title: 'DSS' },
+  { name: 'dss', title: 'DSS' },
 ];
 
 const Navbar: React.FC = () => {
