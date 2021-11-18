@@ -1,10 +1,10 @@
-export interface DSSKeyInput {
+export interface DSAKeyInput {
   p: string;
   q: string;
   x: string;
 }
 
-export interface DSSKeyOutput {
+export interface DSAKeyOutput {
   pub_key: {
     p: string;
     q: string;

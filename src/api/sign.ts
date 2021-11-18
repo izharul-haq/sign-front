@@ -1,9 +1,9 @@
-import { DSSKeyInput, DSSKeyOutput } from '~/models/DSS';
+import { DSAKeyInput, DSAKeyOutput } from '~/models/DSA';
 import { RSAKeyInput, RSAKeyOutput } from '~/models/RSA';
 import { BaseInstance } from './base';
 
-export const getKey = async (algo: 'rsa' | 'dss', reqBody: RSAKeyInput | DSSKeyInput): Promise<RSAKeyOutput | DSSKeyOutput> => {
-  const { data } = await BaseInstance.post<RSAKeyOutput | DSSKeyOutput>(
+export const getKey = async (algo: 'rsa' | 'dsa', reqBody: RSAKeyInput | DSAKeyInput): Promise<RSAKeyOutput | DSAKeyOutput> => {
+  const { data } = await BaseInstance.post<RSAKeyOutput | DSAKeyOutput>(
     `/sign/key/all?algo=${algo}`,
     reqBody
   );

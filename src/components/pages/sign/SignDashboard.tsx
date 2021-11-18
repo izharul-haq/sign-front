@@ -62,11 +62,11 @@ const SignDashboard: React.FC = () => {
             <input
                 id="algo-elg"
                 type="radio"
-                value="dss"
+                value="dsa"
                 required
                 {...register('algo')}
               />
-              <label htmlFor="algo-elg">DSS algorithm</label>
+              <label htmlFor="algo-elg">DSA algorithm</label>
             </div>
           </div>
         </div>

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { getKey } from '~/api/sign';
-import { DSSKeyInput, DSSKeyOutput } from '~/models/DSS';
+import { DSAKeyInput, DSAKeyOutput } from '~/models/DSA';
 import { saveAsJSONFile } from '~/utils/key';
 
-const DSSKeyDashboard: React.FC = () => {
+const DSAKeyDashboard: React.FC = () => {
   const [y, setY] = useState<string | undefined>();
   const [g, setG] = useState<string | undefined>();
   const [x, setX] = useState<string | undefined>();
@@ -13,9 +13,9 @@ const DSSKeyDashboard: React.FC = () => {
 
   const { register, handleSubmit } = useForm();
   
-  const onSubmit = async (data: DSSKeyInput) => {
+  const onSubmit = async (data: DSAKeyInput) => {
     try {
-      const { pub_key, pri_key } = (await getKey('dss', data)) as DSSKeyOutput;
+      const { pub_key, pri_key } = (await getKey('dsa', data)) as DSAKeyOutput;
       setY(pub_key.y); setG(pub_key.g); setX(pri_key.x);
       setP(pub_key.p); setQ(pub_key.q);
     } catch (err) {
@@ -29,7 +29,7 @@ const DSSKeyDashboard: React.FC = () => {
         <div className="page-title mb-1">
           Key Generator
         </div>
-        <div className="italic">For DSS algorithm</div>
+        <div className="italic">For DSA algorithm</div>
       </div>
       <div className="mb-2 p-2 rounded-md bg-jordy-blue-600 text-shocking-200">
         <span className="font-semibold">NOTE:</span> To generate big prime number(s) click{' '}
@@ -110,7 +110,7 @@ const DSSKeyDashboard: React.FC = () => {
             className="button button-secondary max-w-max"
             onClick={() => {
               const content = { y: y as string, g: g as string, p: p as string };
-              saveAsJSONFile(content, 'elgamal_public');
+              saveAsJSONFile(content, 'DSA_public');
             }}
           >
             Save to JSON File
@@ -121,7 +121,7 @@ const DSSKeyDashboard: React.FC = () => {
           <div className="w-full">
             <input
               className="input-text"
-              value={ x ? `(${x}, ${p}, ${q})` : '' }
+              value={ x ? `(${p}, ${q}, ${g}, ${x})` : '' }
               placeholder="Private key goes here"
               readOnly
             />
@@ -131,7 +131,7 @@ const DSSKeyDashboard: React.FC = () => {
             className="button button-secondary max-w-max"
             onClick={() => {
               const content = { x: x as string, p: p as string };
-              saveAsJSONFile(content, 'elgamal_private');
+              saveAsJSONFile(content, 'DSA_private');
             }}
           >
             Save to JSON File
@@ -144,7 +144,7 @@ const DSSKeyDashboard: React.FC = () => {
           <button
             className="button button-primary w-max"
             onClick={() => {
-              navigator.clipboard.writeText(`${y}, ${g}, ${p}`);
+              navigator.clipboard.writeText(`${p}, ${q}, ${g}, ${y}`);
             }}
           >
             Copy Public Key
@@ -152,7 +152,7 @@ const DSSKeyDashboard: React.FC = () => {
           <button
             className="button button-primary w-max"
             onClick={() => {
-              navigator.clipboard.writeText(`${x}, ${p}`);
+              navigator.clipboard.writeText(`${p}, ${q}, ${g}, ${x}`);
             }}
           >
             Copy Private Key
@@ -171,4 +171,4 @@ const DSSKeyDashboard: React.FC = () => {
   );
 };
 
-export default DSSKeyDashboard;
+export default DSAKeyDashboard;

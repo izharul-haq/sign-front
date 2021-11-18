@@ -1,11 +1,11 @@
 import React from 'react';
-import DSSKeyDashboard from '~/components/pages/key/DSSKeyDashboard';
+import DSAKeyDashboard from '~/components/pages/key/DSAKeyDashboard';
 import MainTemplate from '~/components/template/MainTemplate';
 
 const ElgamalKeyPage: React.FC = () => {
   return (
     <MainTemplate>
-      <DSSKeyDashboard />
+      <DSAKeyDashboard />
     </MainTemplate>
   );
 };
