@@ -10,7 +10,7 @@ const OutputTable: React.FC<Props> = ({ output }) => {
   return (
     <div className="">
       <div className="mb-2 font-semibold uppercase">Output</div>
-      <textarea className="input-text" readOnly value={output} />
+      <textarea className="input-text text-center" readOnly value={output} />
       <div className="flex flex-row space-x-4 items-center">
         <div className="w-full"></div>
         <button
