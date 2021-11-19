@@ -6,7 +6,7 @@ import { getSign, verifySign } from '~/api/sign';
 import OutputTable from '~/components/common/OutputTable';
 
 type SignInput = {
-  algo: 'rsa' | 'dss';
+  algo: 'rsa' | 'dsa';
   message: FileList;
   sign?: string;
   key: string;
@@ -23,17 +23,25 @@ const SignDashboard: React.FC = () => {
   const { register, handleSubmit } = useForm();
 
   const onSign = async (data: SignInput) => {
-    if (data.attach) {
-      await getSign(data.algo, data.message[0], data.key, + data.attach as 0 | 1, file as string);
-    } else {
-      const signature = await getSign(data.algo, data.message[0], data.key, + data.attach as 0 | 1, file as string);
-      setSign(signature as string);
+    try {
+      if (data.attach) {
+        await getSign(data.algo, data.message[0], data.key, + data.attach as 0 | 1, file as string);
+      } else {
+        const signature = await getSign(data.algo, data.message[0], data.key, + data.attach as 0 | 1, file as string);
+        setSign(signature as string);
+      }
+    } catch (err) {
+      alert((err as Error).message);
     }
   };
 
   const onVerify = async (data: SignInput) => {
-    const isValid = await verifySign(data.algo, data.message[0], data.key, data.sign as string);
-    setValid(isValid);
+    try {
+      const isValid = await verifySign(data.algo, data.message[0], data.key, data.sign as string);
+      setValid(isValid);
+    } catch (err) {
+      alert((err as Error).message);
+    }
   };
 
   return (
@@ -138,7 +146,9 @@ const SignDashboard: React.FC = () => {
       </form>
 
       <OutputTable
-        output={mode === 'sign' ? sign : `Your digital signature is ${valid === false ? 'not ' : ''}valid`}
+        output={mode === 'sign' ? sign : (
+          valid === undefined ? '' : `Your digital signature is ${valid ? '' : 'not '}valid`
+        )}
       />
 
       <Transition appear show={open} as={Fragment}>
@@ -167,47 +177,6 @@ const SignDashboard: React.FC = () => {
             >
               Close
             </button>
-              {/* </>
-            {modal === 'hint' ? (
-              <>
-                
-            ) : (
-              <>
-                <Dialog.Title
-                  as="div"
-                  className="font-bold text-pine-500 text-xl mb-2 uppercase text-center"
-                >
-                  Your Digital Signature
-                </Dialog.Title>
-                <Dialog.Description as="div" className="mb-4 text-center w-96">
-                  <div className="mb-2">Here is your digital signature.</div>
-                  <input className="input-text text-center" type="text" readOnly value={sign} />
-                </Dialog.Description>
-                <div className="flex flex-row w-96 space-x-2 items-center justify-center">
-                  <button
-                    className="button button-secondary"
-                    onClick={() => setModal(undefined)}
-                  >
-                    Close
-                  </button>
-                  <button
-                    className="button button-secondary"
-                    onClick={() => navigator.clipboard.writeText(sign as string)}
-                  >
-                    Copy Signature
-                  </button>
-                  <button
-                    className="button button-primary"
-                    onClick={() => {
-                      const content = text + '\n\n\n' + 'SIGNATURE: ' + sign;
-                      saveAsTextFile(file as string, content);
-                    }}
-                  >
-                    Attach to File
-                  </button>
-                </div>
-              </>
-            )} */}
           </div>
         </Dialog>
       </Transition>

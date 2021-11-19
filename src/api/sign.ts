@@ -11,7 +11,7 @@ export const getKey = async (algo: 'rsa' | 'dsa', reqBody: RSAKeyInput | DSAKeyI
   return data;
 }
 
-export const getSign = async (algo: 'rsa' | 'dss', message: File, key: string, attach: 0 | 1, filename: string): Promise<string | void> => {
+export const getSign = async (algo: 'rsa' | 'dsa', message: File, key: string, attach: 0 | 1, filename: string): Promise<string | void> => {
   const formData = new FormData();
   formData.append('message', message);
   formData.append('key', key);
@@ -34,7 +34,7 @@ export const getSign = async (algo: 'rsa' | 'dss', message: File, key: string, a
   }
 }
 
-export const verifySign = async (algo: 'rsa' | 'dss', message: File, key: string, sign?: string): Promise<boolean> => {
+export const verifySign = async (algo: 'rsa' | 'dsa', message: File, key: string, sign?: string): Promise<boolean> => {
   const formData = new FormData();
   formData.append('message', message);
   formData.append('key', key);
